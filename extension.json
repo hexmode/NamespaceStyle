@@ -1,0 +1,28 @@
+{
+    "name": "NamespaceStyle",
+    "url": "https://www.mediawiki.org/wiki/Extension:NamespaceStyle",
+    "descriptionmsg": "namespacestyle-desc",
+    "author": [
+        "[https://www.mediawiki.org/wiki/User:MarkAHershberger Mark A. Hershberger]"
+    ],
+    "requires": {
+		"MediaWiki": ">= 1.41.0"
+    },
+    "MessagesDirs": {
+		"NamespaceStyles": [
+			"i18n"
+		]
+    },
+    "HookHandlers": {
+		"main": {
+			"class": "NicheWork\\NamespaceStyle\\Hook"
+		}
+    },
+    "Hooks": {
+		"BeforePageDisplay": "main"
+    },
+    "AutoloadNamespaces": {
+		"NicheWork\\NamespaceStyle\\": "src/"
+    },
+	"manifest_version": 2
+}

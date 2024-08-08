@@ -1,0 +1,5 @@
+#+TITLE: Per-namespace stylesheets
+
+This extension allows you to create per-namespace stylesheets.
+
+To provide a namespace-specific style, create a page in the =MediaWiki= namespace.  The page should begin with the namespace name and have the suffix =-namespace.css=.  You can use =(main)= (as in =MediaWiki:(main)-namespace.css=) for the main namespace.

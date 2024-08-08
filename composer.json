@@ -1,0 +1,55 @@
+{
+    "name": "nichework/namespace-style",
+    "type": "mediawiki-extension",
+    "authors": [
+        {
+            "name": "Mark A. Hershberger",
+            "email": "mah@nichework.com"
+        }
+    ],
+    "description": "Per-Namespace styles",
+    "require": {
+        "composer/installers": "^2.3",
+        "mediawiki/minus-x": "^1.1"
+    },
+    "require-dev": {
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "php-parallel-lint/php-console-highlighter": "^1.0",
+        "mediawiki/mediawiki-codesniffer": "^43.0",
+        "vimeo/psalm": "^5.25",
+        "mediawiki/mediawiki-phan-config": "^0.14.0",
+        "mediawiki/phan-taint-check-plugin": "^6.0"
+    },
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "NicheWork\\NamespaceStyle\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor --exclude node_modules",
+			"@phpcs",
+			"minus-x check ."
+		],
+		"error-format-test": [
+			"phpcs -sp --cache --report=emacs | sed s,^$PWD/,,",
+			"phan -d . -m text --analyze-twice --no-progress-bar | sed 's, ,:,'",
+            "psalm --output-format=emacs --show-info=true --no-progress | sed \"s,${PWD}/,,\""
+		],
+		"fix": [
+			"minus-x fix .",
+			"phpcbf"
+		],
+		"phan": "phan -d . --long-progress-bar",
+		"phpcs": "phpcs -sp --cache"
+    },
+    "manifest_version": 2
+}
